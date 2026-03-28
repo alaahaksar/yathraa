@@ -1,0 +1,57 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores user preferences and profile information.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Unique identifier for the user." },
+        "email": { "type": "string", "format": "email", "description": "User's email address." },
+        "displayName": { "type": "string", "description": "User's display name." },
+        "preferredLanguage": { "type": "string", "enum": ["en", "hi", "ml"], "description": "User's preferred language." },
+        "theme": { "type": "string", "enum": ["light", "dark"], "description": "User's preferred theme." }
+      },
+      "required": ["uid", "email"]
+    },
+    "BusStop": {
+      "title": "Bus Stop",
+      "description": "Represents a bus stop location.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "lat": { "type": "number" },
+        "lng": { "type": "number" }
+      },
+      "required": ["id", "name", "lat", "lng"]
+    },
+    "Route": {
+      "title": "Bus Route",
+      "description": "Defines a bus route with its stops.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "from": { "type": "string" },
+        "to": { "type": "string" },
+        "stops": { "type": "array", "items": { "type": "string" } },
+        "duration": { "type": "number" },
+        "busNumber": { "type": "string" }
+      },
+      "required": ["id", "from", "to", "stops"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profile documents."
+    },
+    "/busStops/{stopId}": {
+      "schema": "BusStop",
+      "description": "Bus stop data."
+    },
+    "/routes/{routeId}": {
+      "schema": "Route",
+      "description": "Bus route data."
+    }
+  }
+}

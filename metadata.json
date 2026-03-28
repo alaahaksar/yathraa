@@ -1,0 +1,7 @@
+{
+  "name": "Yathra",
+  "description": "A smart travel assistant for seamless commuting, featuring real-time bus routes, interactive maps, and multi-language support.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
